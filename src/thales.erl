@@ -7,5 +7,5 @@
 
 -export([info/1]).
 
-info(X) ->
-  {ok, X}.
+info(A) ->
+  {ok, A}.

@@ -14,7 +14,8 @@ op(Node1, Node2) ->
   Node = #node{name=Name,op="AddOp",inputs={Node1, Node2}},
   io:fwrite("~p~n",[Node#node.op]),
   io:fwrite("~p~n",[Node#node.name]),
-  io:fwrite("~p~n",[Node#node.inputs]).
+  io:fwrite("~p~n",[Node#node.inputs]),
+  Node.
 
 %% Given values of input node, return result of element-wise addition.
 compute(Node, {Val1, Val2}) ->

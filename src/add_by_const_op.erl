@@ -14,7 +14,8 @@ op(Node0, ConstVal) ->
   Node = #node{name=Name,op="AddByConstOp",const_attr=ConstVal,inputs={Node0}},
   io:fwrite("~p~n",[Node#node.op]),
   io:fwrite("~p~n",[Node#node.name]),
-  io:fwrite("~p~n",[Node#node.inputs]).
+  io:fwrite("~p~n",[Node#node.inputs]),
+  Node.
 
 %% Given values of input node, return result of element-wise addition.
 compute(Node, {Val0}) ->
