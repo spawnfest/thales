@@ -29,5 +29,5 @@ topo_sort_dfs(Node, Visited, TopoOrder) ->
   {Visited0, TopoOrder0} = lists:foldl(fun(N, {VisitedAcc, TopoOrderAcc}) ->
                                     topo_sort_dfs(N, VisitedAcc, TopoOrderAcc)
                                  end, {NewVisited, TopoOrder}, Node#node.inputs),
-  TopoOrder1 = lists:append(TopoOrder0, Node),
+  TopoOrder1 = lists:append(TopoOrder0, [Node]),
   {Visited0, TopoOrder1}.

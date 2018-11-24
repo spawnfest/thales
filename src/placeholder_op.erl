@@ -11,7 +11,6 @@
 %% Op to feed value to a nodes.
 op() ->
   Node = #node{op="PlaceholderOp"},
-  io:fwrite("~p~n",[Node#node.op]),
   Node.
 
 %% No compute function since node value is fed directly in Executor.
