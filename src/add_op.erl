@@ -11,7 +11,7 @@
 %% add two nodes return a new node.
 op(Node1, Node2) ->
   Name = io:format("(~p+~p)", [Node1, Node2]),
-  Node = #node{name=Name,op="AddOp",inputs={Node1, Node2}},
+  Node = #node{name=Name,op="AddOp",inputs=[Node1, Node2]},
   io:fwrite("~p~n",[Node#node.op]),
   io:fwrite("~p~n",[Node#node.name]),
   io:fwrite("~p~n",[Node#node.inputs]),
