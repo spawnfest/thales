@@ -1,0 +1,6 @@
+{application, thales,
+ [{description, "thales"},
+  {vsn, "0.0.1"},
+  {modules, []},
+  {registered, []},
+  {applications, [kernel, stdlib]}]}.
