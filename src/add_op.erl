@@ -4,7 +4,6 @@
 %%% Created :  24 Nov 2018 by Ilhan Adiyaman <ilhanadiyaman@yahoo.com>
 
 -module(add_op).
--import(lists,[last/1]).
 
 -export([op/2, compute/2, gradient/2]).
 -record(node, {name="", op, const_attr, inputs}).
