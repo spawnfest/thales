@@ -10,11 +10,8 @@
 
 %% element-wise add a node by a constant.
 op(Node0, ConstVal) ->
-  Name = io:format("(~p+~p)", [Node0, ConstVal]),
+  Name = Node0#node.name ++ "+" ++ ConstVal,
   Node = #node{name=Name,op="AddByConstOp",const_attr=ConstVal,inputs=[Node0]},
-  io:fwrite("~p~n",[Node#node.op]),
-  io:fwrite("~p~n",[Node#node.name]),
-  io:fwrite("~p~n",[Node#node.inputs]),
   Node.
 
 %% Given values of input node, return result of element-wise addition.

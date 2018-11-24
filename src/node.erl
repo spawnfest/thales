@@ -16,9 +16,6 @@ add(Self, Other) ->
     true ->
       add_op:op(Self, Other)
   end,
-  io:fwrite("~p~n",[NewNode#node.op]),
-  io:fwrite("~p~n",[NewNode#node.name]),
-  io:fwrite("~p~n",[NewNode#node.inputs]),
   NewNode.
 
 %% Multiplying two nodes return a new node.
@@ -29,7 +26,4 @@ mul(Self, Other) ->
     true ->
       mul_op:op(Self, Other)
   end,
-  io:fwrite("~p~n",[NewNode#node.op]),
-  io:fwrite("~p~n",[NewNode#node.name]),
-  io:fwrite("~p~n",[NewNode#node.inputs]),
   NewNode.
