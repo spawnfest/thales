@@ -1,26 +1,25 @@
-%%% File    : mul_op.erl
+%%% File    : mul_by_const_op.erl
 %%% Author  : Ilhan Adiyaman <ilhanadiyaman@yahoo.com>
 %%% Description : Automatic Differentiation
 %%% Created :  24 Nov 2018 by Ilhan Adiyaman <ilhanadiyaman@yahoo.com>
 
--module(mul_op).
+-module(mul_by_const_op).
 
 -export([op/2, compute/2, gradient/2]).
 -include("node.hrl").
 
-%% add two nodes return a new node.
-op(Node1, Node2) ->
-  Name = io:format("(~p+~p)", [Node1, Node2]),
-  Node = #node{name=Name,op="MulOp",inputs={Node1, Node2}},
+%% element-wise multiply a node by a constant.
+op(Node0, ConstVal) ->
+  Name = io:format("(~p+~p)", [Node0, ConstVal]),
+  Node = #node{name=Name,op="MulByConstOp",const_attr=ConstVal,inputs={Node0}},
   io:fwrite("~p~n",[Node#node.op]),
   io:fwrite("~p~n",[Node#node.name]),
   io:fwrite("~p~n",[Node#node.inputs]).
 
 %% Given values of input node, return result of element-wise multiplication.
-compute(Node, {Val1, Val2}) ->
-  Val1 * Val2.
+compute(Node, {Val0}) ->
+  Val0 * Node#node.const_attr.
 
-%% Given gradient of multiply node, return gradient contributions to each input.
+%% Given gradient of multiplication node, return gradient contribution to input.
 gradient(Node, OutputGrad) ->
-  {First, Second} = Node#node.inputs,
-  [OutputGrad * First, OutputGrad * Second].
+  {OutputGrad * Node#node.const_attr}.
