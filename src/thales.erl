@@ -93,5 +93,5 @@ test() ->
 %% X1 = thales:variable("x1").
 %% X2 = thales:variable("x2").
 %% Y = thales:test(X1,X2).
-%% FeedMap = #{"x1"=>4,"x2"=>5}.
+%% FeedMap = #{"x1"=>[4],"x2"=>[5]}.
 %% YVal = executer:run([Y], FeedMap).
