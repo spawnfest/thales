@@ -21,4 +21,4 @@ compute(_, [Val1, Val2]) ->
 %% Given gradient of multiply node, return gradient contributions to each input.
 gradient(Node, OutputGrad) ->
   [First, Second] = Node#node.inputs,
-  [node:mul(OutputGrad, First), node:mul(OutputGrad, Second)].
+  [node:mul(OutputGrad, Second), node:mul(OutputGrad, First)].

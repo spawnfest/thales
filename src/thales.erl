@@ -33,7 +33,7 @@ gradients(OutputNode, NodeList) ->
       % Step 1: sum partial adjoints from output edges
       OutputGradsList = maps:get(Node, NodeToOutputGradListAcc),
       OutputGrad1 = lists:nth(1, OutputGradsList), %% TODO: add more
-      OutputGradList0 = lists:sublist([OutputGradsList], 2, 10),
+      OutputGradList0 = lists:sublist(OutputGradsList, 2, 10),
       OutputGrad = case helper:is_empty(OutputGradList0) of
         true -> OutputGrad1;
         false -> lists:foldl(
@@ -56,14 +56,14 @@ gradients(OutputNode, NodeList) ->
                                             true ->
                                               GradI = lists:nth(Index, InputGradList),
                                               GradList = maps:get(NodeInput, NodeToOutputGradListAcc0),
-                                              GradList0 = lists:append(GradList, GradI),
+                                              GradList0 = lists:append(GradList, [GradI]),
                                               maps:put(NodeInput, GradList0, NodeToOutputGradListAcc0)
                                           end,
               Index0 = Index + 1,
               {Index0, NodeToOutputGradListAcc1}
             end, {1, NodeToOutputGradListAcc}, Node#node.inputs),
           {NodeToOutputGrad0, NodeToOutputGradListAccResult}
-      end
+        end
     end, {maps:new(), NodeToOutputGradsList0}, ReverseTopoOrder),
   GradNodeList = lists:foldl(
     fun(Node, GradNodeListAcc) ->
@@ -74,8 +74,12 @@ gradients(OutputNode, NodeList) ->
 test2() ->
   X1 = thales:variable("x1"),
   X2 = thales:variable("x2"),
-  Y = node:mul(X1, X2),
+  X3 = node:mul(X1, X2),
+  Y = node:add(X3, X1),
   [Grad_X1, Grad_X2] = thales:gradients(Y, [X1, X2]),
+  io:fwrite("Grad_X1:~p~n",[Grad_X1]),
+  io:fwrite("Grad_X2:~p~n",[Grad_X2]),
+  io:fwrite("Y:~p~n",[Y]),
   X1_Val = [2, 2, 2],
   X2_Val = [3, 3, 3],
   FeedMap = #{X1=>X1_Val,X2=>X2_Val},
