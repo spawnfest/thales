@@ -4,7 +4,7 @@
 %%% Created :  24 Nov 2018 by Ilhan Adiyaman <ilhanadiyaman@yahoo.com>
 
 -module(helper).
--export([find_topo_sort/1, topo_sort_dfs/3]).
+-export([find_topo_sort/1, topo_sort_dfs/3, sum/1]).
 
 -include("node.hrl").
 
@@ -31,3 +31,11 @@ topo_sort_dfs(Node, Visited, TopoOrder) ->
                                  end, {NewVisited, TopoOrder}, Node#node.inputs),
   TopoOrder1 = lists:append(TopoOrder0, [Node]),
   {Visited0, TopoOrder1}.
+
+%% Sum the element in the list
+sum(L) ->
+   sum(L, 0).
+sum([H|T], Acc) ->
+   sum(T, H + Acc);
+sum([], Acc) ->
+   Acc.
