@@ -4,7 +4,7 @@
 %%% Created :  24 Nov 2018 by Ilhan Adiyaman <ilhanadiyaman@yahoo.com>
 
 -module(thales).
--export([variable/1, test/0, test2/0]).
+-export([variable/1, test/0]).
 
 -include("node.hrl").
 
