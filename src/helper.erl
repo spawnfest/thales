@@ -23,14 +23,17 @@ find_topo_sort(NodeList) ->
 %% Post-order DFS
 topo_sort_dfs(Node, Visited, TopoOrder) ->
   case sets:is_element(Node, Visited) of
-    true -> NewVisited = Visited;
-    false -> NewVisited = sets:add_element(Node, Visited)
-  end,
-  {Visited0, TopoOrder0} = lists:foldl(fun(N, {VisitedAcc, TopoOrderAcc}) ->
-                                    topo_sort_dfs(N, VisitedAcc, TopoOrderAcc)
-                                 end, {NewVisited, TopoOrder}, Node#node.inputs),
-  TopoOrder1 = lists:append(TopoOrder0, [Node]),
-  {Visited0, TopoOrder1}.
+    true ->
+      {Visited, TopoOrder};
+    false ->
+      NewVisited = sets:add_element(Node, Visited),
+      {Visited0, TopoOrder0} = lists:foldl(fun(N, {VisitedAcc, TopoOrderAcc}) ->
+                                        topo_sort_dfs(N, VisitedAcc, TopoOrderAcc)
+                                     end, {NewVisited, TopoOrder}, Node#node.inputs),
+      TopoOrder1 = lists:append(TopoOrder0, [Node]),
+      {Visited0, TopoOrder1}
+  end.
+
 
 %% Sum the element in the list
 sum(L) ->
