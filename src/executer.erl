@@ -17,14 +17,10 @@ run(EvalNodeList, FeedMap) ->
   % Traverse graph in topological sort order and compute values for all nodes.
   TopoOrder = helper:find_topo_sort(EvalNodeList),
   FeedMap0 = lists:foldl(fun(Node, FeedMapAcc)->
-                io:fwrite("Node:~p~n",[Node#node.name]),
-                io:fwrite("FMA:~p~n",[FeedMapAcc]),
-                io:fwrite("NI:~p~n",[Node#node.inputs]),
                 case maps:is_key(Node#node.name, FeedMap) of
                   false -> InputVals = lists:foldl(fun(InputNode, InputValsAcc) ->
                                                       lists:append(InputValsAcc, [maps:get(InputNode,FeedMapAcc)])
                                                     end, [], Node#node.inputs),
-                          io:fwrite("~p~n",[InputVals]),
                           Value = executer:apply_op(Node#node.op, Node, InputVals),
                           if
                             is_number(Value) ->
@@ -35,7 +31,10 @@ run(EvalNodeList, FeedMap) ->
                   true -> FeedMapAcc
                 end
               end, FeedMap, TopoOrder),
-  io:fwrite("~p~n",[FeedMap0]).
+  NodeValResults = lists:foldl(fun(Node, NodeValResultsAcc) ->
+                lists:append(NodeValResultsAcc, [maps:get(Node, FeedMap0)])
+  end, [], EvalNodeList),
+  NodeValResults.
 
 %% Invokes the operation
 apply_op(Op, Node, InputVals) ->
