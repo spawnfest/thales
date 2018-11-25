@@ -77,11 +77,8 @@ test2() ->
   X3 = node:mul(X1, X2),
   Y = node:add(X3, X1),
   [Grad_X1, Grad_X2] = thales:gradients(Y, [X1, X2]),
-  io:fwrite("Grad_X1:~p~n",[Grad_X1]),
-  io:fwrite("Grad_X2:~p~n",[Grad_X2]),
-  io:fwrite("Y:~p~n",[Y]),
-  X1_Val = [2, 2, 2],
-  X2_Val = [3, 3, 3],
+  X1_Val = [20, 20, 20],
+  X2_Val = [30, 30, 30],
   FeedMap = #{X1=>X1_Val,X2=>X2_Val},
   executer:run([Y, Grad_X1, Grad_X2], FeedMap).
 
