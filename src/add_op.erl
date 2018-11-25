@@ -11,11 +11,11 @@
 %% add two nodes return a new node.
 op(Node1, Node2) ->
   Name = Node1#node.name ++ "+" ++ Node2#node.name,
-  Node = #node{name=Name,op="AddOp",inputs=[Node1, Node2]},
+  Node = #node{name=Name,op=fun add_op:compute/2,inputs=[Node1, Node2]},
   Node.
 
 %% Given values of input node, return result of element-wise addition.
-compute(Node, {Val1, Val2}) ->
+compute(Node, [Val1, Val2]) ->
   Val1 + Val2.
 
 %% Given gradient of add node, return gradient contributions to each input.
