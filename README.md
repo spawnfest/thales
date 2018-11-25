@@ -87,6 +87,15 @@ FeedMap = #{X1=>X1_Val,X2=>X2_Val},
 
 `Grad_X1_Val` and `Grad_X2_Val` now contain the values of `dY/dX1` and `dY/dX2`.
 
+## More examples
+
+More examples are placed in `thales.erl` module.
+
+- `thales:test_identity()`: Tests identity gradient.
+- `thales:test_add_two_vars()`: Tests two variables' addition.
+- `thales:test_mul_two_vars()`: Tests two variables' multiplication.
+- `thales:test_add_mul_mix_1()`, `thales:test_add_mul_mix_2()`: Tests different combinations of addition and multiplication.
+
 ## Next steps
 
 - I couldn't write tests, due to time limit. So more tests!
@@ -96,3 +105,4 @@ FeedMap = #{X1=>X1_Val,X2=>X2_Val},
 - File structure can be improved.
 - More documentation.
 - Packaging.
+- Mathematical operation order can be problem while using `node:add()` and `node:mul()`. Operator overloading can be built.

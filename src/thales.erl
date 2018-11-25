@@ -4,7 +4,7 @@
 %%% Created :  24 Nov 2018 by Ilhan Adiyaman <ilhanadiyaman@yahoo.com>
 
 -module(thales).
--export([variable/1, gradients/2, test/0, show_me_how/0]).
+-export([variable/1, gradients/2, show_me_how/0, test_identity/0, test_add_two_vars/0, test_mul_two_vars/0, test_add_mul_mix_1/0, test_add_mul_mix_2/0]).
 
 -include("node.hrl").
 
@@ -77,18 +77,68 @@ show_me_how() ->
   X3 = node:mul(X1, X2),
   Y = node:add(X3, X1),
   [Grad_X1, Grad_X2] = thales:gradients(Y, [X1, X2]),
-  X1_Val = [20, 20, 20],
-  X2_Val = [30, 30, 30],
+  X1_Val = [20],
+  X2_Val = [30],
   FeedMap = #{X1=>X1_Val,X2=>X2_Val},
   executer:run([Y, Grad_X1, Grad_X2], FeedMap).
 
-test() ->
+test_identity() ->
+  X2 = thales:variable("x2"),
+  Y = X2,
+  [Grad_X2] = thales:gradients(Y, [X2]),
+  X2_Val = [650],
+  FeedMap = #{X2=>X2_Val},
+  executer:run([Y, Grad_X2], FeedMap).
+
+test_add_two_vars() ->
   X1 = thales:variable("x1"),
   X2 = thales:variable("x2"),
-  X3 = node:mul(X1, X2),
-  Y = node:add(X3, X1),
-  FeedMap = #{X1=>[4],X2=>[5]},
-  executer:run([Y], FeedMap).
+  Y = node:add(X1, X2),
+  [Grad_X1, Grad_X2] = thales:gradients(Y, [X1, X2]),
+  X1_Val = [2],
+  X2_Val = [3],
+  FeedMap = #{X1=>X1_Val,X2=>X2_Val},
+  executer:run([Y, Grad_X1, Grad_X2], FeedMap).
+
+test_mul_two_vars() ->
+  X1 = thales:variable("x1"),
+  X2 = thales:variable("x2"),
+  Y = node:mul(X1, X2),
+  [Grad_X1, Grad_X2] = thales:gradients(Y, [X1, X2]),
+  X1_Val = [20],
+  X2_Val = [30],
+  FeedMap = #{X1=>X1_Val,X2=>X2_Val},
+  executer:run([Y, Grad_X1, Grad_X2], FeedMap).
+
+test_add_mul_mix_1() ->
+  X1 = thales:variable("x1"),
+  X2 = thales:variable("x2"),
+  X3 = thales:variable("x3"),
+  K = node:add(X1, X2),
+  L = node:mul(K, X3),
+  Y = node:mul(L, X1),
+  [Grad_X1, Grad_X2, Grad_X3] = thales:gradients(Y, [X1, X2, X3]),
+  X1_Val = [20],
+  X2_Val = [30],
+  X3_Val = [45],
+  FeedMap = #{X1=>X1_Val,X2=>X2_Val,X3=>X3_Val},
+  executer:run([Y, Grad_X1, Grad_X2, Grad_X3], FeedMap).
+
+test_add_mul_mix_2() ->
+  X1 = thales:variable("x1"),
+  X2 = thales:variable("x2"),
+  X3 = thales:variable("x3"),
+  X4 = thales:variable("x4"),
+  K = node:add(X1, X2),
+  L = node:mul(K, X3),
+  Y = node:mul(L, X4),
+  [Grad_X1, Grad_X2, Grad_X3, Grad_X4] = thales:gradients(Y, [X1, X2, X3, X4]),
+  X1_Val = [2],
+  X2_Val = [3],
+  X3_Val = [4.5],
+  X4_Val = [5],
+  FeedMap = #{X1=>X1_Val,X2=>X2_Val,X3=>X3_Val,X4=>X4_Val},
+  executer:run([Y, Grad_X1, Grad_X2, Grad_X3, Grad_X4], FeedMap).
 
 
 %% X1 = thales:variable("x1").
