@@ -1,4 +1,4 @@
-![Thales](https://raw.githubusercontent.com/spawnfest/thales/master/imgs/thales.jpg "Logo")
+![Thales](https://github.com/spawnfest/thales/raw/master/imgs/thales.jpg "Logo")
 
 # Thales
 
@@ -74,7 +74,7 @@ In order to evaluate the gradients of `Y` wrt. `X1` and `X2`, wee need to constr
 
 According to reverse-mode automatic differentiation algorithm, we create a gradient node for each node in the existing graph and return those that user are interested in evaluating. Now, the computation graph looks like this:
 
-![Computation Graph](https://raw.githubusercontent.com/spawnfest/thales/master/imgs/graph.png "Computation Graph")
+![Computation Graph](https://github.com/spawnfest/thales/raw/master/imgs/graph.png "Computation Graph")
 
 Now we can feed the values of the inputs and evaluate the gradients using `executer`.
 
