@@ -1,3 +1,5 @@
+![Thales](https://raw.githubusercontent.com/spawnfest/thales/master/imgs/thales.jpg?token=AD4UJob8BdXwLNEkxi_g2Cb27aXME66Lks5cBGWPwA%3D%3D "Logo")
+
 # Thales
 
 Reverse-mode Automatic Differentiation in pure Erlang.
@@ -70,7 +72,9 @@ In order to evaluate the gradients of `Y` wrt. `X1` and `X2`, wee need to constr
 [Grad_X1, Grad_X2] = thales:gradients(Y, [X1, X2]).
 ```
 
-According to reverse-mode automatic differentiation algorithm, we create a gradient node for each node in the existing graph and return those that user are interested in evaluating.
+According to reverse-mode automatic differentiation algorithm, we create a gradient node for each node in the existing graph and return those that user are interested in evaluating. Now, the computation graph looks like this:
+
+![Computation Graph](https://raw.githubusercontent.com/spawnfest/thales/master/imgs/graph.png?token=AD4UJlb8DbZrN5hDzC_WKBfsuubFY505ks5cBGSPwA%3D%3D "Computation Graph")
 
 Now we can feed the values of the inputs and evaluate the gradients using `executer`.
 
