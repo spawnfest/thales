@@ -86,7 +86,7 @@ FeedMap = #{X1=>X1_Val,X2=>X2_Val},
 ## Next steps
 
 - I couldn't write tests, due to time limit. So more tests!
-- It is not hard to add more operators such as sin(), cos(), ln().
+- It is not hard to add more operators such as sin(), cos(), pow(), ln(), sqrt().
 - Matrix multiplication operator could be interesting.
 - We need to test gradient of gradients.
 - File structure can be improved.
