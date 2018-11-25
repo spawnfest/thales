@@ -11,7 +11,7 @@
 %% add two nodes return a new node.
 op(Node0) ->
   Name = "Oneslike "++Node0#node.name,
-  Node = #node{name=Name,op=fun oneslike_op:compute/2,inputs=[Node0]},
+  Node = #node{name=Name,op=fun oneslike_op:compute/2,grad=fun oneslike_op:gradient/2,inputs=[Node0]},
   Node.
 
 %% Given values of input node, return result of element-wise addition.
@@ -20,4 +20,4 @@ compute(Node, [Val1, Val2]) ->
 
 %% Given gradient of add node, return gradient contributions to each input.
 gradient(Node, OutputGrad) ->
-  {OutputGrad, OutputGrad}.
+  [OutputGrad, OutputGrad].

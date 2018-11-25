@@ -10,7 +10,7 @@
 
 %% Op to feed value to a nodes.
 op() ->
-  Node = #node{op=fun placeholder_op:compute/2},
+  Node = #node{op=fun placeholder_op:compute/2,grad=fun placeholder_op:gradient/2},
   Node.
 
 %% No compute function since node value is fed directly in Executor.

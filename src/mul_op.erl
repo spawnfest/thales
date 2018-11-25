@@ -11,7 +11,7 @@
 %% add two nodes return a new node.
 op(Node1, Node2) ->
   Name = Node1#node.name ++ "*" ++ Node2#node.name,
-  Node = #node{name=Name,op=fun mul_op:compute/2,inputs=[Node1, Node2]},
+  Node = #node{name=Name,op=fun mul_op:compute/2,grad=fun mul_op:gradient/2,inputs=[Node1, Node2]},
   Node.
 
 %% Given values of input node, return result of element-wise multiplication.
