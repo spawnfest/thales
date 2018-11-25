@@ -15,9 +15,9 @@ op(Node1, Node2) ->
   Node.
 
 %% Given values of input node, return result of element-wise addition.
-compute(Node, [Val1, Val2]) ->
-  Val1 + Val2.
+compute(_, [Val1, Val2]) ->
+  lists:zipwith(fun(X, Y) -> X+Y end, Val1, Val2).
 
 %% Given gradient of add node, return gradient contributions to each input.
-gradient(Node, OutputGrad) ->
+gradient(_, OutputGrad) ->
   [OutputGrad, OutputGrad].

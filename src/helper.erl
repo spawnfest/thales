@@ -4,7 +4,7 @@
 %%% Created :  24 Nov 2018 by Ilhan Adiyaman <ilhanadiyaman@yahoo.com>
 
 -module(helper).
--export([find_topo_sort/1, topo_sort_dfs/3, sum/1]).
+-export([find_topo_sort/1, topo_sort_dfs/3, sum/1, is_empty/1]).
 
 -include("node.hrl").
 
@@ -36,6 +36,12 @@ topo_sort_dfs(Node, Visited, TopoOrder) ->
 sum(L) ->
    sum(L, 0).
 sum([H|T], Acc) ->
-   sum(T, H + Acc);
-sum([], Acc) ->
+   sum(T, node:add(H, Acc));
+sum(0, Acc) ->
    Acc.
+
+is_empty(L) ->
+  case length(L) == 0 of
+    true -> true;
+    false -> false
+  end.

@@ -10,14 +10,14 @@
 
 %% element-wise multiply a node by a constant.
 op(Node0, ConstVal) ->
-  Name = Node0#node.name ++ "*" ++ ConstVal,
-  Node = #node{name=Name,op="MulByConstOp",const_attr=ConstVal,inputs=[Node0]},
+  Name = Node0#node.name ++ "*" ++ integer_to_list(ConstVal),
+  Node = #node{name=Name,op=fun mul_by_const_op:compute/2,grad=fun mul_by_const_op:gradient/2,const_attr=ConstVal,inputs=[Node0]},
   Node.
 
 %% Given values of input node, return result of element-wise multiplication.
-compute(Node, {Val0}) ->
+compute(Node, [Val0]) ->
   Val0 * Node#node.const_attr.
 
 %% Given gradient of multiplication node, return gradient contribution to input.
 gradient(Node, OutputGrad) ->
-  {OutputGrad * Node#node.const_attr}.
+  [node:mul(OutputGrad, Node#node.const_attr)].

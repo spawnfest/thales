@@ -14,9 +14,9 @@ op() ->
   Node.
 
 %% No compute function since node value is fed directly in Executor.
-compute(Node, Vals) ->
+compute(_, _) ->
   ok.
 
 %% No gradient function since node has no inputs.
-gradient(Node, OutputGrad) ->
+gradient(_, _) ->
   ok.

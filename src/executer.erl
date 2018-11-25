@@ -23,7 +23,7 @@ run(EvalNodeList, FeedMap) ->
                                                     end, [], Node#node.inputs),
                           Value = executer:apply_op(Node#node.op, Node, InputVals),
                           if
-                            is_number(Value) ->
+                            is_list(Value) ->
                               maps:put(Node, Value, FeedMapAcc);
                             true ->
                               FeedMapAcc
