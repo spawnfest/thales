@@ -42,6 +42,10 @@ Eshell V10.1.2  (abort with ^G)
 1> thales:show_me_how().
 ```
 
+## Quick start
+
+If you don't want to copy paste the things below, just run `thales:show_me_how()`. It will run exactly same thing above and print out `Y_val`, `Grad_X1_Val` and `Grad_X2_Val`.
+
 ## How to use it
 
 Here we'll use a simple example to show the API and data structures of `thales` module.
@@ -79,6 +83,11 @@ FeedMap = #{X1=>X1_Val,X2=>X2_Val},
 
 `Grad_X1_Val` and `Grad_X2_Val` now contain the values of `dY/dX1` and `dY/dX2`.
 
-## Faster test
+## Next steps
 
-If you don't want to copy paste the things above, just run `thales:show_me_how()`. It will run exactly same thing above and print out `Y_val`, `Grad_X1_Val` and `Grad_X2_Val`.
+- I couldn't write tests, due to time limit. So more tests!
+- It is not hard to add more operators such as sin(), cos(), ln().
+- Matrix multiplication operator could be interesting.
+- We need to test gradient of gradients.
+- File structure can be improved.
+- More documentation.
