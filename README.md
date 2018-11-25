@@ -23,6 +23,25 @@ Key concepts and data structures that we would need to implement are:
 - Construction of gradient nodes given forward graph
 - Executor
 
+## How to compile
+
+Use rebar3 to compile as below.
+
+```console
+$ rebar3 compile
+```
+
+## How to run
+
+Enter the build directory and run `erl`.
+
+```console
+$ cd _build/default/lib/thales/ebin
+$ erl
+Eshell V10.1.2  (abort with ^G)
+1> thales:show_me_how().
+```
+
 ## How to use it
 
 Here we'll use a simple example to show the API and data structures of `thales` module.
@@ -52,10 +71,14 @@ According to reverse-mode automatic differentiation algorithm, we create a gradi
 Now we can feed the values of the inputs and evaluate the gradients using `executer`.
 
 ```erlang
-X1_Val = [2, 2, 2],
-X2_Val = [3, 3, 3],
+X1_Val = [20, 20, 20],
+X2_Val = [30, 30, 30],
 FeedMap = #{X1=>X1_Val,X2=>X2_Val},
 [Y_Val, Grad_X1_Val, Grad_X2_Val] = executer:run([Y, Grad_X1, Grad_X2], FeedMap).
 ```
 
 `Grad_X1_Val` and `Grad_X2_Val` now contain the values of `dY/dX1` and `dY/dX2`.
+
+## Faster test
+
+If you don't want to copy paste the things above, just run `thales:show_me_how()`. It will run exactly same thing above and print out `Y_val`, `Grad_X1_Val` and `Grad_X2_Val`.

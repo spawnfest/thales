@@ -4,7 +4,7 @@
 %%% Created :  24 Nov 2018 by Ilhan Adiyaman <ilhanadiyaman@yahoo.com>
 
 -module(thales).
--export([variable/1, gradients/2, test/0, test2/0]).
+-export([variable/1, gradients/2, test/0, show_me_how/0]).
 
 -include("node.hrl").
 
@@ -71,7 +71,7 @@ gradients(OutputNode, NodeList) ->
     end, [], NodeList),
   GradNodeList.
 
-test2() ->
+show_me_how() ->
   X1 = thales:variable("x1"),
   X2 = thales:variable("x2"),
   X3 = node:mul(X1, X2),
