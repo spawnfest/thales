@@ -1,4 +1,4 @@
-![Thales](https://raw.githubusercontent.com/spawnfest/thales/master/imgs/thales.jpg?token=AD4UJob8BdXwLNEkxi_g2Cb27aXME66Lks5cBGWPwA%3D%3D "Logo")
+![Thales](https://raw.githubusercontent.com/spawnfest/thales/master/imgs/thales.jpg "Logo")
 
 # Thales
 
@@ -16,7 +16,7 @@ In recent years, automatic differentiation have become an important component of
 
 The initial implementation is carried out as part of the [Spawnfest 2018](https://spawnfest.github.io) hackathon. Therefore, due to the short implementation time, it is treated as a proof of concept.
 
-Our code should be able to construct simple mathematical expressions, eg. `Y = X1 * X2 + X1` , and evaluate their outputs as well as their gradients, e.g. `Y, dY/dX1 and dY/dX2`.
+Our code should be able to construct simple mathematical expressions, eg. `Y = X1 * X2 + X1` , and evaluate their outputs as well as their gradients, e.g. `Y`, `dY/dX1` and `dY/dX2`.
 
 Key concepts and data structures that we would need to implement are:
 
@@ -46,7 +46,7 @@ Eshell V10.1.2  (abort with ^G)
 
 ## Quick start
 
-If you don't want to copy paste the things below, just run `thales:show_me_how()`. It will run exactly same thing above and print out `Y_val`, `Grad_X1_Val` and `Grad_X2_Val`.
+If you don't want to copy paste the things below, just run `thales:show_me_how()`. It will run exactly same thing below and print out `Y_val`, `Grad_X1_Val` and `Grad_X2_Val`.
 
 ## How to use it
 
@@ -74,7 +74,7 @@ In order to evaluate the gradients of `Y` wrt. `X1` and `X2`, wee need to constr
 
 According to reverse-mode automatic differentiation algorithm, we create a gradient node for each node in the existing graph and return those that user are interested in evaluating. Now, the computation graph looks like this:
 
-![Computation Graph](https://raw.githubusercontent.com/spawnfest/thales/master/imgs/graph.png?token=AD4UJlb8DbZrN5hDzC_WKBfsuubFY505ks5cBGSPwA%3D%3D "Computation Graph")
+![Computation Graph](https://raw.githubusercontent.com/spawnfest/thales/master/imgs/graph.png "Computation Graph")
 
 Now we can feed the values of the inputs and evaluate the gradients using `executer`.
 
