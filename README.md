@@ -10,7 +10,7 @@ Automatic differentiation(also known as _algorithmic differentiation_ or _comput
 
 Reverse mode of Automatic Differentiation requires a more explicit representation of the computation as a graph, which must be built and then traversed both forwards and backwards to get numerical results for the function and its derivative.
 
-In recent years, automatic differentiation have become an important component of many machine learning frameworks such as MXNet, Torch, Theano and TensorFlow. It is using for minimization of some differentiable loss function which is the heart of many machine learning models. These frameworks usually use reverse mode Automatic Differentiation since it is more efficient than the forward mode.
+In recent years, automatic differentiation have become an important component of many machine learning frameworks such as [MXNet](https://mxnet.incubator.apache.org), [Torch](http://torch.ch), [Theano](https://github.com/Theano/Theano) and [TensorFlow](https://www.tensorflow.org). It is using for minimization of some differentiable loss function which is the heart of many machine learning models. These frameworks usually use reverse mode Automatic Differentiation since it is more efficient than the forward mode.
 
 ## Implementation
 
