@@ -79,8 +79,8 @@ According to reverse-mode automatic differentiation algorithm, we create a gradi
 Now we can feed the values of the inputs and evaluate the gradients using `executer`.
 
 ```erlang
-X1_Val = [20, 20, 20],
-X2_Val = [30, 30, 30],
+X1_Val = [20],
+X2_Val = [30],
 FeedMap = #{X1=>X1_Val,X2=>X2_Val},
 [Y_Val, Grad_X1_Val, Grad_X2_Val] = executer:run([Y, Grad_X1, Grad_X2], FeedMap).
 ```
@@ -93,6 +93,7 @@ More examples are placed in `thales.erl` module.
 
 - `thales:test_identity()`: Tests identity gradient.
 - `thales:test_add_two_vars()`: Tests two variables' addition.
+- `thales:test_add_by_const()`: Tests constant addition.
 - `thales:test_mul_two_vars()`: Tests two variables' multiplication.
 - `thales:test_add_mul_mix_1()`, `thales:test_add_mul_mix_2()`: Tests different combinations of addition and multiplication.
 
