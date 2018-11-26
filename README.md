@@ -96,9 +96,15 @@ More examples are placed in `thales.erl` module.
 - `thales:test_mul_two_vars()`: Tests two variables' multiplication.
 - `thales:test_add_mul_mix_1()`, `thales:test_add_mul_mix_2()`: Tests different combinations of addition and multiplication.
 
+## How to add new operators
+
+- First, create a module by defining `op/2`, `compute/2` and `gradient/2` functions.
+- You can use `add_op.erl` as boilerplate.
+- Add operator to the `node.erl`.
+
 ## Next steps
 
-- I couldn't write tests, due to time limit. So more tests!
+- I couldn't setup eunit, due to time limit. So the first next step would be that!
 - It is not hard to add more operators such as sin(), cos(), pow(), ln(), sqrt().
 - Matrix multiplication operator could be interesting.
 - We need to test gradient of gradients.
