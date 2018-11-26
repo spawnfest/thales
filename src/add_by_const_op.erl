@@ -16,7 +16,7 @@ op(Node0, ConstVal) ->
 
 %% Given values of input node, return result of element-wise addition.
 compute(Node, [Val0]) ->
-  Val0 + Node#node.const_attr.
+  [lists:sum(Val0) + Node#node.const_attr].
 
 %% Given gradient of add node, return gradient contribution to input.
 gradient(_, OutputGrad) ->
