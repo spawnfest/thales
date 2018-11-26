@@ -4,7 +4,7 @@
 %%% Created :  24 Nov 2018 by Ilhan Adiyaman <ilhanadiyaman@yahoo.com>
 
 -module(thales).
--export([variable/1, gradients/2, show_me_how/0, test_identity/0, test_add_by_const/0, test_add_two_vars/0, test_mul_two_vars/0, test_add_mul_mix_1/0, test_add_mul_mix_2/0]).
+-export([variable/1, gradients/2, show_me_how/0, test_identity/0, test_add_by_const/0, test_mul_by_const/0, test_add_two_vars/0, test_mul_two_vars/0, test_add_mul_mix_1/0, test_add_mul_mix_2/0]).
 
 -include("node.hrl").
 
@@ -93,6 +93,14 @@ test_identity() ->
 test_add_by_const() ->
   X2 = thales:variable("x2"),
   Y = node:add(X2, 5),
+  [Grad_X2] = thales:gradients(Y, [X2]),
+  X2_Val = [650],
+  FeedMap = #{X2=>X2_Val},
+  executer:run([Y, Grad_X2], FeedMap).
+
+test_mul_by_const() ->
+  X2 = thales:variable("x2"),
+  Y = node:mul(X2, 5),
   [Grad_X2] = thales:gradients(Y, [X2]),
   X2_Val = [650],
   FeedMap = #{X2=>X2_Val},

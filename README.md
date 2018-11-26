@@ -94,6 +94,7 @@ More examples are placed in `thales.erl` module.
 - `thales:test_identity()`: Tests identity gradient.
 - `thales:test_add_two_vars()`: Tests two variables' addition.
 - `thales:test_add_by_const()`: Tests constant addition.
+- `thales:test_mul_by_const()`: Tests constant multiplication.
 - `thales:test_mul_two_vars()`: Tests two variables' multiplication.
 - `thales:test_add_mul_mix_1()`, `thales:test_add_mul_mix_2()`: Tests different combinations of addition and multiplication.
 
