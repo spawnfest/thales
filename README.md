@@ -112,3 +112,9 @@ More examples are placed in `thales.erl` module.
 - More documentation.
 - Packaging.
 - Mathematical operation order can be problem while using `node:add()` and `node:mul()`. Operator overloading can be built.
+
+## References
+
+- [Wikipedia](https://en.wikipedia.org/wiki/Automatic_differentiation)
+- [Introduction to Automatic Differentiation](http://alexey.radul.name/ideas/2013/introduction-to-automatic-differentiation/)
+- [Backpropogation is Just Steepest Descent with Automatic Differentiation](https://idontgetoutmuch.wordpress.com/2013/10/13/backpropogation-is-just-steepest-descent-with-automatic-differentiation-2/)
